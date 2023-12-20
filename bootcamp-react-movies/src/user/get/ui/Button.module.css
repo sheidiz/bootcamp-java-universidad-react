@@ -1,0 +1,10 @@
+.userButton {
+    width: 250px;
+    border: none;
+}
+.hideButton {
+    display: none;
+}
+.showButton {
+    display: '';
+}
