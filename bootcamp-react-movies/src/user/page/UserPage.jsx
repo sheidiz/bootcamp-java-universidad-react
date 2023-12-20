@@ -1,36 +1,42 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createUser, modifyUser, resetUser } from '../../redux/users/user';
 import { modifyMensajes } from '../../redux/mensajes/mensajes';
 
 function UserPage() {
 
-    //1 importamos el dispatcher
-    const dispatcher = useDispatch();
+    //1 importamos el dispathcer
+    const dispathcer = useDispatch();
     const userState = useSelector(store => store.users);
 
     const crearUsuario = () => {
-        //view > dispach > action
-        dispatcher(createUser({
+        //view > dispath > action
+        dispathcer(createUser({
             name: 'carlos',
             email: 'carlos@mail.com'
         }));
 
-        dispatcher(modifyMensajes({
+        dispathcer(modifyMensajes({
             msj: 'Usuario Creado',
         }));
     }
+
     const modificarUsuario = () => {
-        dispatcher(modifyUser({
-            name: 'juan'
-        }));
-        dispatcher(modifyMensajes({
+        dispathcer(
+            modifyUser(
+                {
+                    name: 'juan'
+                }
+            )
+        );
+
+        dispathcer(modifyMensajes({
             msj: 'Usuario Modificado',
         }));
     }
+
     const reiniciarUsuario = () => {
-        dispatcher(resetUser());
-        dispatcher(modifyMensajes({
+        dispathcer(resetUser());
+        dispathcer(modifyMensajes({
             msj: 'Usuario Reiniciado',
         }));
     }
@@ -55,4 +61,6 @@ function UserPage() {
         </>
     )
 }
+/*formatear codigo: alt+shift+f */
+
 export default UserPage;

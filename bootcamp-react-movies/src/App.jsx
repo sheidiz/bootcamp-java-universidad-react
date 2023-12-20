@@ -5,15 +5,14 @@ import { useEffect, useState } from 'react';
 import { UserDetails } from './user/user-details/ui/UserDetails';
 import UserPage from './user/page/UserPage';
 import { Provider } from 'react-redux';
-import EcommerceStore from './redux/store';
-import Mensaje from './mensajes/ui/Mensaje';
+import EcomerceStore from './redux/store';
 import { AppRouter } from './AppRouter';
 
 function App() {
 
-  const [user, setUser] = useState(undefined);
-  const [cont, setCont] = useState(1);
-  const [userMails, setUserMails] = useState(new Set([]));
+  const [user,setUser]  = useState(undefined);
+  const [cont,setCont] = useState(1);
+  const [userMails,setUserMails] = useState(new Set([]));
 
   const get = async (e) => {
     const url = `${import.meta.env.VITE_REQ_SINGLE_USER}/${cont}`;
@@ -21,7 +20,7 @@ function App() {
 
     // console.log(user);
     setUser(prev => user);
-    setCont(prev => prev + 1);
+    setCont(prev => prev +1);
   }
 
   const resetUser = () => {
@@ -36,19 +35,20 @@ function App() {
   */
   useEffect(() => {
     console.log('una vez');//inicializar datos cuando se esta cargando el componente
-  }, []);
+  },[]);
 
   useEffect(() => {
     //guardo el el mail 
-    if (user) {
+    if(user) {      
       userMails.add(user.email);
       //setUserMails(prev => prevs);
       console.log(userMails);
     }
-  }, [user]);
+  },[user]);
 
   return (
-    <>{/*
+    <>
+    {/*
       <MyFirstButton
         text={'Get User '}
         click={get}
@@ -64,12 +64,13 @@ function App() {
           <UserDetails user={user} id={user.email}/>
         </>
         : 'Primero busque un user....'
-      }*/}
-      <Provider store={EcommerceStore}>
-        <AppRouter />
-      </Provider>
+      }
+    */}
+    <Provider store={EcomerceStore}>
+      <AppRouter/>
+    </Provider>
     </>
   )
 }
 
-export default App;
+export default App

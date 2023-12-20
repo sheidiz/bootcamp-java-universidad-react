@@ -5,7 +5,7 @@ export const MensajeInitialState = {
 };
 
 export const mensajesSlice = createSlice({
-    name: 'mensajes',
+    name: 'mensaje',
     initialState: MensajeInitialState,
     reducers: {
         createMensajes: (state,action) => {
