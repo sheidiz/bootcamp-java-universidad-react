@@ -11,12 +11,12 @@ function UserPage() {
     const crearUsuario = () => {
         //view > dispath > action
         dispathcer(createUser({
-            name: 'carlos',
+            name:'carlos',
             email: 'carlos@mail.com'
         }));
 
         dispathcer(modifyMensajes({
-            msj: 'Usuario Creado',
+            msj:'Usuario Creado',
         }));
     }
 
@@ -30,35 +30,35 @@ function UserPage() {
         );
 
         dispathcer(modifyMensajes({
-            msj: 'Usuario Modificado',
+            msj:'Usuario Modificado',
         }));
     }
 
     const reiniciarUsuario = () => {
         dispathcer(resetUser());
         dispathcer(modifyMensajes({
-            msj: 'Usuario Reiniciado',
+            msj:'Usuario Reiniciado',
         }));
     }
 
     return (
-        <>
+        <div className='col-sm-12 col-md-6 col-lg 4'>
             {
                 JSON.stringify(userState)
             }
-            <hr />
+            <hr/>
             <button onClick={crearUsuario}>
                 Crear User
             </button>
-            <hr />
+            <hr/>
             <button onClick={modificarUsuario}>
                 Modify User
             </button>
-            <hr />
+            <hr/>
             <button onClick={reiniciarUsuario}>
                 Reset User
             </button>
-        </>
+        </div>
     )
 }
 /*formatear codigo: alt+shift+f */
