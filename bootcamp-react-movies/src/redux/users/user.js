@@ -4,24 +4,26 @@ export const USER_KEY = 'user';
 
 const getUserFromLocalStorage = (USER_KEY) => {
     let user = localStorage.getItem(USER_KEY);
-    if (!user) {
+    if(!user) {
         user = UserEmptyState;
-    } else {
+    }else{
         user = JSON.parse(user);
     }
 
     return user;
 }
 
-const saveInLocalStorage = (key, value) => {
-    localStorage.setItem(key, JSON.stringify(value));
+const saveInLocalStorage = (key,value) => {
+    localStorage.setItem(key,JSON.stringify(value));
 }
 
 /*estado inicial del user slice (dentro del store) */
 const InitialState = getUserFromLocalStorage(USER_KEY);
 const UserEmptyState = {
     name: '',
-    email: ''
+    email: '',
+    surname: '',
+    avatar: ''
 };
 //raname de variables
 
@@ -32,22 +34,22 @@ export const userSlice = createSlice(
         initialState: InitialState,
         reducers: {
             //action (el objeto action trae un payload)
-            createUser: (state, action) => {
+            createUser: (state,action) => {
                 //logica=reducer
                 saveInLocalStorage(USER_KEY, action.payload);
                 return action.payload; //lo que viene desde la view (ui/page) es lo que queda como user inicial
             },
-            modifyUser: (state, action) => {
-                const newState = { ...state, ...action.payload };
+            modifyUser: (state,action) => {
+                const newState = {...state, ...action.payload};
                 saveInLocalStorage(USER_KEY, newState);
                 return newState;
-            },
+            },  
             resetUser: (/*state,action*/) => {
                 saveInLocalStorage(USER_KEY, UserEmptyState);
                 return UserEmptyState;
-            }
+            } 
         }
     }
 );
 
-export const { createUser, modifyUser, resetUser } = userSlice.actions;
+export const {createUser, modifyUser, resetUser} = userSlice.actions;

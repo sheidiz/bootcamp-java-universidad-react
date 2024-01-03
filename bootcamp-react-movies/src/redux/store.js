@@ -3,7 +3,7 @@ import { userSlice } from './users/user';
 import { mensajesSlice } from "./mensajes/mensajes";
 
 export const EcomerceStore = configureStore({
-    reducer: {
+    reducer : {
         users: userSlice.reducer,
         mensajes: mensajesSlice.reducer
     }
